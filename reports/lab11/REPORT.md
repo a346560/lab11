@@ -49,15 +49,15 @@ $ cd _install/bin
 ```
 
 ```ShellSession
-$ lldb demo
-(lldb) target create "DEMO"
-(lldb) process launch --stop-at-entry
-(lldb) breakpoint list
-(lldb) breakpoint set --name print
-(lldb) breakpoint set --file demo.cpp --line 12
-(lldb) breakpoint list
-(lldb) process launch
-(lldb) exit
+$ lldb demo #загрузка приложения DEMO в отладчик
+(lldb) target create "DEMO" #создание цели
+(lldb) process launch --stop-at-entry # запуск процесса до точки остановки
+(lldb) breakpoint list # список точек остановки
+(lldb) breakpoint set --name print # установка точки остановки с именем print
+(lldb) breakpoint set --file demo.cpp --line 12 в файле demo.cpp на строке 12
+(lldb) breakpoint list #вывод точки остановки
+(lldb) process launch # запуск процесса с учетом ранее введеных параментров
+(lldb) exit #выход из отладчика
 
 Traceback (most recent call last):
   File "<string>", line 1, in <module>
@@ -90,33 +90,33 @@ error: process launch failed: Lost debug server connection
 ```
 
 ```ShellSession
-$ demo
-<Command>-T
-$ ps
-$ lldb
-(lldb) process attach --pid <идентификатор_процесса> 
-(lldb) process attach --name demo
-(lldb) exit
+$ demo #запуск исследуемой программы
+<Command>-T # переключение на другой терминал
+$ ps вывод списка процессов
+$ lldb #запуск отладчика
+(lldb) process attach --pid <идентификатор_процесса> #ввод номера процесса
+(lldb) process attach --name demo # ввод имени процесса
+(lldb) exit #выход из отладчика
 ```
 
 ```ShellSession
-$ lldb demo
-(lldb) process launch --stop-at-entry -- -program_arg "text1 text2 text3"
-(lldb) thread list
-(lldb) thread backtrace
-(lldb) frame variable
-(lldb) frame variable argv[0] 
+$ lldb demo #запуск отладчика с программой demo
+(lldb) process launch --stop-at-entry -- -program_arg "text1 text2 text3" #запуск процесса до точки остановки с параметрами программы "text1 text2 text3"
+(lldb) thread list #список потоков в программе
+(lldb) thread backtrace #показать обратную трассировку стека потока
+(lldb) frame variable # показать текущие аргументы и локальные переменные потока/фрейма
+(lldb) frame variable argv[0]  #показать значение локальной переченной  - должно быть имя программы для linux
 ```
 
 ```ShellSession
-$ lldb demo
-(lldb) process launch --stop-at-entry
-(lldb) thread continue
-(lldb) thread step-in
-(lldb) thread step-over
-(lldb) thread step-out
-(lldb) thread step-inst
-(lldb) thread step-over-inst
+$ lldb demo #запуск отладчика с программой demo
+(lldb) process launch --stop-at-entry #запуск процесса до точки остановки
+(lldb) thread continue #продолжить исполнение до следующей точки остановки
+(lldb) thread step-in #начать исполнение с первого шага/точки
+(lldb) thread step-over #начать исполнение со следующего шага/точки
+(lldb) thread step-out #выйти из выбранного потока
+(lldb) thread step-inst # Сделать шаг уровня в текущем выбранном потоке
+(lldb) thread step-over-inst #сделать один шаг на одном уровне в текущем выбранном потоке
 (lldb) exit
 ```
 Traceback (most recent call last):
